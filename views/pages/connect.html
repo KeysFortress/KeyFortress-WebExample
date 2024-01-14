@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta property="og:site_name" content="Passwordless example">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Example consumer website, with passwordless authentication">
+    <!-- For IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- For Resposive Device -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- For Window Tab Color -->
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#7034FF">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#7034FF">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#7034FF">
+    <title>Passwordless example</title>
+    <!-- Favicon -->
+    <!-- Main style sheet -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- responsive style sheet -->
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+    <script src="https://unpkg.com/htmx.org"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/client-side-templates.js"></script>
+    <script src="https://unpkg.com/mustache@latest"></script>
+    <!-- Fix Internet Explorer ______________________________________-->
+    <!--[if lt IE 9]>
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="vendor/html5shiv.js"></script>
+			<script src="vendor/respond.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+    <div class="main-page-wrapper p0">
+
+        <div class="user-data-page clearfix d-lg-flex" style="  justify-content: center;">
+
+            <div class="form-wrapper">
+
+                <form action="#" class="user-data-form mt-80 md-mt-40">
+                    <h2>Chose your authentication method and<br> Connect!</h2>
+                    <p class="header-info pt-30 pb-50"> </a>
+                    </p>
+
+                    <div class="row" style="  justify-content: center; display: flex;">
+                        <div class="col-12">
+                            <div id="qr-code" style="justify-content: center; display: flex;"></div>
+                        </div>
+
+                        <div class="col-12">
+                            <button class="theme-btn-one mt-50 mb-50">User desktop authenticator</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+            integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- Theme js -->
+        <script src="js/theme.js"></script>
+
+        <script>
+            const qr = new QRCode(document.getElementById("qr-code"), {
+                text: 'dawdawda',
+                width: 300,
+                height: 300,
+            });
+        </script>
+    </div> <!-- /.main-page-wrapper -->
+</body>
+
+</html>
