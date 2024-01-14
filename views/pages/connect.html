@@ -49,7 +49,26 @@
 
                     <div class="row" style="  justify-content: center; display: flex;">
                         <div class="col-12">
-                            <div id="qr-code" style="justify-content: center; display: flex;"></div>
+                            <div hx-ext="client-side-templates">
+                                <button hx-get="https://localhost:7095/API/V1/Authentication/qr-link/test"
+                                    hx-swap="innerHTML" hx-target="#content" mustache-template="foo">
+                                    Click Me
+                                </button>
+
+                                <p id="content">Start</p>
+
+                                <template id="foo">
+                                    <script>
+                                        new QRCode(document.getElementById("content"), {
+                                            text: Response.prototype.body,
+                                            width: 300,
+                                            height: 300,
+                                        });
+                                    </script>
+
+                                    <p>{ {% raw %}{{url}}{% endraw %} and {% raw %}{{forUser}}{% endraw %} }</p>
+                                </template>
+                            </div>
                         </div>
 
                         <div class="col-12">
@@ -67,14 +86,9 @@
             integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <!-- Theme js -->
-        <script src="js/theme.js"></script>
 
         <script>
-            const qr = new QRCode(document.getElementById("qr-code"), {
-                text: 'dawdawda',
-                width: 300,
-                height: 300,
-            });
+
         </script>
     </div> <!-- /.main-page-wrapper -->
 </body>
