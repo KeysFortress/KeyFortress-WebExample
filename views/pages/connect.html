@@ -35,62 +35,48 @@
 		<![endif]-->
 </head>
 
-<body>
+<body hx-get="https://localhost:7095/API/V1/Authentication/qr-link/test" hx-trigger="load"
+    hx-on="htmx:afterRequest: onQrLoaded(event)" hx-swap="none">
     <div class="main-page-wrapper p0">
+        <div class="centerContent">
+            <form action="#" class="user-data-form mt-80 md-mt-40">
+                <h2>Chose your authentication method and<br> Connect!</h2>
+                <p class="header-info pt-30 pb-50">
+                </p>
 
-        <div class="user-data-page clearfix d-lg-flex" style="  justify-content: center;">
+                <div id="content" style="display: flex;  justify-content: center;"></div>
 
-            <div class="form-wrapper">
-
-                <form action="#" class="user-data-form mt-80 md-mt-40">
-                    <h2>Chose your authentication method and<br> Connect!</h2>
-                    <p class="header-info pt-30 pb-50"> </a>
-                    </p>
-
-                    <div class="row" style="  justify-content: center; display: flex;">
-                        <div class="col-12">
-                            <div hx-ext="client-side-templates">
-                                <button hx-get="https://localhost:7095/API/V1/Authentication/qr-link/test"
-                                    hx-swap="innerHTML" hx-target="#content" mustache-template="foo">
-                                    Click Me
-                                </button>
-
-                                <p id="content">Start</p>
-
-                                <template id="foo">
-                                    <script>
-                                        new QRCode(document.getElementById("content"), {
-                                            text: Response.prototype.body,
-                                            width: 300,
-                                            height: 300,
-                                        });
-                                    </script>
-
-                                    <p>{ {% raw %}{{url}}{% endraw %} and {% raw %}{{forUser}}{% endraw %} }</p>
-                                </template>
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <button class="theme-btn-one mt-50 mb-50">User desktop authenticator</button>
-                        </div>
-
+                <div class="row" style="  justify-content: center; display: flex;">
+                    <div class="col-12">
+                        <button class="theme-btn-one mt-50 mb-50">User desktop authenticator</button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
-
-
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
             integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <!-- Theme js -->
 
-        <script>
+    </div>
 
-        </script>
-    </div> <!-- /.main-page-wrapper -->
+
+    <script>
+        function onQrLoaded(event) {
+            try {
+                var response = event.detail.xhr.response;
+                new QRCode(document.getElementById("content"), {
+                    text: response,
+                    width: 300,
+                    height: 300,
+                    correctLevel: QRCode.CorrectLevel.L
+                });
+
+            } catch (ex) {
+                console.log(ex);
+            }
+        }
+    </script>
 </body>
 
 </html>
